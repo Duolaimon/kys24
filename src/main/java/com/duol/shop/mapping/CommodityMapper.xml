@@ -4,8 +4,40 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.duol.shop.dao.CommodityDao">
     <select id="queryCommodityList" resultType="com.duol.shop.entity.Commodity">
-        SELECT * FROM tb_commodity
-        ORDER BY commodity_id ASC ;
+        SELECT *
+        FROM tb_commodity
+        ORDER BY commodity_id ASC;
     </select>
 
+    <insert id="insertCommodity" parameterType="com.duol.shop.entity.Commodity">
+        INSERT INTO tb_commodity (commodity_id, commodity_name, commodity_brand, commodity_variety,
+                                  commodity_depict, commodity_price, commodity_amount,
+                                  commodity_leavenum, commodity_standard, operator, create_time,
+                                  update_time, commodity_picture)
+        VALUES (#{commodityId}, #{commodityName}, #{commodityBrand}, #{commodityVariety}, #{commodityDepict},
+                                #{commodityPrice}, #{commodityAmount}, #{commodityLeavenum},
+                                #{commodityStandard}, #{operator}, current_timestamp, current_timestamp,
+                #{commodityPicture});
+    </insert>
+
+    <update id="updateCommodity" parameterType="com.duol.shop.entity.Commodity">
+        UPDATE tb_commodity
+        SET
+            commodity_name     = #{commodityName},
+            commodity_brand    = #{commodityBrand},
+            commodity_variety  = #{commodityVariety},
+            commodity_depict   = #{commodityDepict},
+            commodity_price    = #{commodityPrice},
+            commodity_amount   = #{commodityAmount},
+            commodity_leavenum = #{commodityLeavenum},
+            commodity_standard = #{commodityStandard},
+            operator           = #{operator},
+            commodity_picture  = #{commodityPicture},
+            update_time        = CURRENT_TIMESTAMP
+        WHERE commodity_id = #{commodityId}
+    </update>
+
+    <delete id="deleteCommodity">
+        DELETE FROM tb_commodity WHERE commodity_id=#{commodityId};
+    </delete>
 </mapper>

@@ -1,6 +1,7 @@
 package com.duol.shop.dao;
 
 import com.duol.shop.entity.Commodity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,4 +16,21 @@ public interface CommodityDao {
      */
     List<Commodity> queryCommodityList();
 
+    /**
+     * 插入一条商品记录
+     * @param commodity 商品信息
+     */
+    void insertCommodity(Commodity commodity);
+
+    /**
+     * 更新商品信息
+     * @param newCommodity 更新后的商品信息
+     */
+    void updateCommodity(Commodity newCommodity);
+
+    /**
+     * 删除指定商品
+     * @param commodityId 商品id
+     */
+    void deleteCommodity(@Param("commodityId") int commodityId);
 }

@@ -112,7 +112,7 @@ public class ShopController {
      *          否则返回空
      */
     @RequestMapping(value = "/{commodityId}/producePage",method = RequestMethod.GET)
-    public List<CommodityMainInfo> showProducePageByCommodityId(@PathVariable int commodityId) {
+    public Commodity showProducePageByCommodityId(@PathVariable int commodityId) {
         return commodityService.getCommodityInfoById(commodityId);
     }
 

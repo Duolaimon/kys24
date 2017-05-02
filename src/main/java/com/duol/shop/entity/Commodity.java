@@ -8,26 +8,26 @@ import java.util.Date;
  */
 @SuppressWarnings("unused")
 public class Commodity {
-    private int commodityID;        //商品id
+    private int commodityId;        //商品id
     private String commodityName;   //商品名称
     private int commodityBrand;     //商品品牌id
     private int commodityVariety;    //种类id
     private String commodityDepict; //商品标签
-    private float commodityPrice;   //商品单价
+    private Float commodityPrice;   //商品单价
     private int commodityAmount;    //库存
     private int commodityLeavenum;  //商品剩余数量
-    private float commodityStandard;//商品规格
+    private Float commodityStandard;//商品规格
     private int operator;           //修改者id
     private long createTime;        //创建时间
     private long updateTime;        //更新时间
     private String commodityPicture;//商品图片地址
 
-    public int getCommodityID() {
-        return commodityID;
+    public int getCommodityId() {
+        return commodityId;
     }
 
-    public void setCommodityID(int commodityID) {
-        this.commodityID = commodityID;
+    public void setCommodityId(int commodityID) {
+        this.commodityId = commodityID;
     }
 
     public String getCommodityName() {
@@ -62,11 +62,11 @@ public class Commodity {
         this.commodityDepict = commodityDepict;
     }
 
-    public float getCommodityPrice() {
+    public Float getCommodityPrice() {
         return commodityPrice;
     }
 
-    public void setCommodityPrice(float commodityPrice) {
+    public void setCommodityPrice(Float commodityPrice) {
         this.commodityPrice = commodityPrice;
     }
 
@@ -86,11 +86,11 @@ public class Commodity {
         this.commodityLeavenum = commodityLeavenum;
     }
 
-    public float getCommodityStandard() {
+    public Float getCommodityStandard() {
         return commodityStandard;
     }
 
-    public void setCommodityStandard(float commodityStandard) {
+    public void setCommodityStandard(Float commodityStandard) {
         this.commodityStandard = commodityStandard;
     }
 
