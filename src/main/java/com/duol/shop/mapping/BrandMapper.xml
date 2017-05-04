@@ -5,6 +5,24 @@
 <mapper namespace="com.duol.shop.dao.BrandDao">
     <select id="queryBrandList" resultType="Brand">
         SELECT * FROM tb_brand
-        ORDER BY brandID ASC ;
+        ORDER BY brand_id ASC ;
     </select>
+
+    <insert id="insertBrand" parameterType="Brand">
+        INSERT tb_brand(variety_id, brand_name, create_time, update_time)
+                VALUES (#{varietyId},#{brandName},current_timestamp,current_timestamp);
+    </insert>
+
+    <update id="updateBrand" parameterType="Brand">
+        UPDATE tb_brand
+        SET
+            variety_id = #{varietyId},
+            brand_name = #{brandName},
+            update_time = current_timestamp()
+        WHERE brand_id = #{brandId};
+    </update>
+
+    <delete id="deleteBrand">
+        DELETE FROM tb_brand WHERE brand_id = #{brandId};
+    </delete>
 </mapper>

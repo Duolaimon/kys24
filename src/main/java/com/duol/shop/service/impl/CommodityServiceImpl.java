@@ -1,6 +1,5 @@
 package com.duol.shop.service.impl;
 
-import com.duol.shop.controller.ShopController;
 import com.duol.shop.dao.CommodityDao;
 import com.duol.shop.entity.Commodity;
 import com.duol.shop.dto.CommodityMainInfo;
@@ -13,9 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,7 +31,7 @@ public class CommodityServiceImpl implements CommodityService {
     /**
      * 日志
      */
-    private static final Logger logger = LoggerFactory.getLogger(ShopController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CommodityServiceImpl.class);
     /**
      * 商品图片保存路径
      */
@@ -243,23 +242,27 @@ public class CommodityServiceImpl implements CommodityService {
             }
             String fileName = file.getOriginalFilename();
             String fileType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
-            String pictureName = "4d3c2b1a_" + commodityId + "_a1b2c3d4" + fileType;// 保存在本地的图片名字
+            String pictureName = "4d3c2b1a_" + commodityId + fileType;// 保存在本地的图片名字
             Optional<Commodity> optional = hasCommodity(commodityId);
-            Commodity commodity;
+            /*判断是否存在目标商品*/
             if (optional.isPresent()) {
-                commodity = optional.get();
                 picturePath = rootLocation + "/" + pictureName;
-                commodity.setCommodityPicture(picturePath);
                 StateUtils.COMMODITY_IS_UPDATED = true;
-                commodityDao.updateCommodity(commodity);
+                commodityDao.uploadPicture(commodityId, picturePath);
             } else {
                 throw new ResultException(ResultEnum.UPDATE_NOT_EXIST_ID);
             }
 
             Files.copy(file.getInputStream(), this.rootLocation.resolve(pictureName));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (ResultException e) {
+            logger.info("ResultException:{}",e.getMessage());
+            throw new ResultException(ResultEnum.UPDATE_NOT_EXIST_ID);
+        } catch (MultipartException e) {
+            logger.info("MultipartException:{}", e.getMessage());
             throw new ResultException(ResultEnum.FILE_TOO_LARGE);
+        } catch (Exception e) {
+            logger.info("Exception:{}", e.getMessage());
+            throw new ResultException(ResultEnum.OTHERS_EXCEPTION);
         }
         return picturePath;
     }

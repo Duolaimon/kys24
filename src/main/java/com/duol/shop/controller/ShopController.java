@@ -47,7 +47,7 @@ public class ShopController {
      *
      * @return 所有商品所有信息列表
      */
-    @RequestMapping(value = "/commoditiesInfo", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<Commodity> showAllProducesInfo() {
         return commodityService.getCommodityList();
     }
@@ -57,7 +57,7 @@ public class ShopController {
      *
      * @return 所有品牌的所有信息
      */
-    @RequestMapping(value = "/brandsInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/brands", method = RequestMethod.GET)
     public List<Brand> getAllBrandInfo() {
         return brandService.getBrandList();
     }
@@ -67,7 +67,7 @@ public class ShopController {
      *
      * @return 所有商品种类所有信息
      */
-    @RequestMapping(value = "/varietiesInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/varieties", method = RequestMethod.GET)
     public List<Variety> getAllVarietyInfo() {
         return varietyService.getAllVarietyList();
     }
@@ -77,7 +77,7 @@ public class ShopController {
      *
      * @return 商城页面的商品部分信息
      */
-    @RequestMapping(value = "/mainPageInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/commodities", method = RequestMethod.GET)
     public List<CommodityMainInfo> showMainPageProducesInfo() {
         return commodityService.getCommodityInfoList();
     }
@@ -89,7 +89,7 @@ public class ShopController {
      * @return 如果id存在,返回商城页面指定品牌id的商品部分信息
      *         否则返回空
      */
-    @RequestMapping(value = "/{brandId}/mainPageByBrand", method = RequestMethod.GET)
+    @RequestMapping(value = "/brands/{brandId}", method = RequestMethod.GET)
     public List<CommodityMainInfo> showMainPageProducesInfoByBrandId(@PathVariable int brandId) {
         return commodityService.getCommodityInfoListByBrandId(brandId);
     }
@@ -100,7 +100,7 @@ public class ShopController {
      * @return  如果id存在,返回商城页面指定种类id的商品部分信息
      *          否则返回空
      */
-    @RequestMapping(value = "/{varietyId}/mainPageByVariety",method = RequestMethod.GET)
+    @RequestMapping(value = "/varieties/{varietyId}",method = RequestMethod.GET)
     public List<CommodityMainInfo> showMainPageProducesInfoByVarietyId(@PathVariable int varietyId) {
         return commodityService.getCommodityInfoListByVarietyId(varietyId);
     }
@@ -111,7 +111,7 @@ public class ShopController {
      * @return  如果id存在,返回商品展示单页的商品信息
      *          否则返回空
      */
-    @RequestMapping(value = "/{commodityId}/producePage",method = RequestMethod.GET)
+    @RequestMapping(value = "/commodities/{commodityId}",method = RequestMethod.GET)
     public Commodity showProducePageByCommodityId(@PathVariable int commodityId) {
         return commodityService.getCommodityInfoById(commodityId);
     }

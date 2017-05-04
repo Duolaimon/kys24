@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface BrandService {
     List<Brand> getBrandList();
+
+    void addBrand(Brand brand);
 }

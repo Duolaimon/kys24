@@ -12,7 +12,7 @@ public enum ResultEnum {
     SELECT_NOT_EXIST_ID(104,"查找失败,不存在指定id"),
     UPLOAD_EMPTY_FILE(111, "无法上传空文件"),
     FILE_TOO_LARGE(112, "文件过大,无法上传"),
-    OTHERS_EXCEPTION(200,"出现未知异常");
+    OTHERS_EXCEPTION(-1,"出现未知异常");
 
     private int code;
 

@@ -60,43 +60,43 @@
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="23" parent="9" name="brandID">
-      <Position>1</Position>
-      <Comment>品牌编号</Comment>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="24" parent="9" name="varietyID">
-      <Position>2</Position>
-      <Comment>商品种类编号</Comment>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <column id="25" parent="9" name="brandname">
-      <Position>3</Position>
-      <Comment>品牌名字</Comment>
-      <DataType>varchar(8)|0</DataType>
-    </column>
-    <column id="26" parent="9" name="create_time">
+    <column id="23" parent="9" name="create_time">
       <Position>4</Position>
       <Comment>注册时间</Comment>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="27" parent="9" name="update_time">
+    <column id="24" parent="9" name="update_time">
       <Position>5</Position>
       <Comment>更新时间</Comment>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0000-00-00 00:00:00&apos;</DefaultExpression>
     </column>
+    <column id="25" parent="9" name="brand_id">
+      <Position>1</Position>
+      <Comment>品牌编号</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="26" parent="9" name="variety_id">
+      <Position>2</Position>
+      <Comment>商品种类编号</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="27" parent="9" name="brand_name">
+      <Position>3</Position>
+      <Comment>品牌名字</Comment>
+      <DataType>varchar(8)|0</DataType>
+    </column>
     <index id="28" parent="9" name="brandname">
-      <ColNames>brandname</ColNames>
+      <ColNames>brand_name</ColNames>
     </index>
     <key id="29" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>brandID</ColNames>
+      <ColNames>brand_id</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="30" parent="10" name="commodity_id">
@@ -168,7 +168,7 @@
     <column id="42" parent="10" name="commodity_picture">
       <Position>13</Position>
       <Comment>图片地址</Comment>
-      <DataType>varchar(40)|0</DataType>
+      <DataType>varchar(200)|0</DataType>
     </column>
     <index id="43" parent="10" name="commidityname">
       <ColNames>commodity_name</ColNames>

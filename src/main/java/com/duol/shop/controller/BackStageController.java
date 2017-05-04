@@ -30,7 +30,7 @@ public class BackStageController {
     /**
      * 日志
      */
-    private static final Logger logger = LoggerFactory.getLogger(ShopController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BackStageController.class);
 
     /**
      * 用于处理商品的业务逻辑
@@ -57,7 +57,7 @@ public class BackStageController {
      *
      * @return 所有商品所有信息列表
      */
-    @RequestMapping(value = "/commoditiesInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/commodities",method = RequestMethod.GET)
     public List<Commodity> showAllProducesInfo() {
         return commodityService.getCommodityList();
     }
@@ -67,7 +67,7 @@ public class BackStageController {
      *
      * @return 所有品牌的所有信息
      */
-    @RequestMapping(value = "/brandsInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/brands", method = RequestMethod.GET)
     public List<Brand> getAllBrandInfo() {
         return brandService.getBrandList();
     }
@@ -77,7 +77,7 @@ public class BackStageController {
      *
      * @return 所有商品种类所有信息
      */
-    @RequestMapping(value = "/varietiesInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/varieties", method = RequestMethod.GET)
     public List<Variety> getAllVarietyInfo() {
         return varietyService.getAllVarietyList();
     }
@@ -87,7 +87,7 @@ public class BackStageController {
      * @param commodity 商品信息
      * @return  操作结果
      */
-    @RequestMapping(value = "/addCommodity",method = RequestMethod.POST)
+    @RequestMapping(value = "/commodities",method = RequestMethod.POST)
     public BackStageResult<Commodity> addCommodity(@RequestBody Commodity commodity) {
         try {
             commodityService.addCommodity(commodity);
@@ -108,7 +108,7 @@ public class BackStageController {
      * @param commodity 商品信息
      * @return  操作结果
      */
-    @RequestMapping(value = "/setCommodity",method = RequestMethod.PUT)
+    @RequestMapping(value = "/commodities",method = RequestMethod.PUT)
     public BackStageResult<Commodity> setCommodity(@RequestBody Commodity commodity) {
         try {
             commodityService.setCommodity(commodity);
@@ -127,7 +127,7 @@ public class BackStageController {
      * @param commodityId  商品id
      * @return  被删除的商品信息
      */
-    @RequestMapping(value = "/removeCommodity/{commodityId}",method = RequestMethod.GET)
+    @RequestMapping(value = "/commodities/{commodityId}",method = RequestMethod.DELETE)
     public BackStageResult<Commodity> removeCommodity(@PathVariable int commodityId) {
         Commodity commodity;
         try {
@@ -149,7 +149,7 @@ public class BackStageController {
      * @param commodityId   商品id
      * @return  商品图片上传结果
      */
-    @PostMapping("/uploadPicture")
+    @PostMapping("/pictures")
     public BackStageResult<String> uploadPicture(@RequestParam("file") MultipartFile file,
                                                  @RequestParam("commodityId") int commodityId) {
         String picturePath;
@@ -159,5 +159,26 @@ public class BackStageController {
             return new BackStageResult<>(e, null);
         }
         return new BackStageResult<>(ResultEnum.SUCCESS, picturePath);
+    }
+
+
+    /*
+    后台品牌处理
+     */
+
+    @RequestMapping(value = "brands",method = RequestMethod.POST)
+    public BackStageResult<Brand> addBrand(@RequestBody Brand brand) {
+        try {
+            brandService.addBrand(brand);
+        } catch (DuplicateKeyException e) {
+            logger.error(e.getMessage());
+            return new BackStageResult<>(ResultEnum.DUPLICATE_INSERT, null);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return new BackStageResult<>(ResultEnum.OTHERS_EXCEPTION, null);
+        }
+        brand.setCreateTime(new Date());
+        brand.setUpdateTime(new Date());
+        return new BackStageResult<>(ResultEnum.SUCCESS, brand);
     }
 }

@@ -13,11 +13,10 @@
         INSERT INTO tb_commodity (commodity_id, commodity_name, commodity_brand, commodity_variety,
                                   commodity_depict, commodity_price, commodity_amount,
                                   commodity_leavenum, commodity_standard, operator, create_time,
-                                  update_time, commodity_picture)
+                                  update_time)
         VALUES (#{commodityId}, #{commodityName}, #{commodityBrand}, #{commodityVariety}, #{commodityDepict},
                                 #{commodityPrice}, #{commodityAmount}, #{commodityLeavenum},
-                                #{commodityStandard}, #{operator}, current_timestamp, current_timestamp,
-                #{commodityPicture});
+                                #{commodityStandard}, #{operator}, current_timestamp, current_timestamp);
     </insert>
 
     <update id="updateCommodity" parameterType="com.duol.shop.entity.Commodity">
@@ -32,7 +31,6 @@
             commodity_leavenum = #{commodityLeavenum},
             commodity_standard = #{commodityStandard},
             operator           = #{operator},
-            commodity_picture  = #{commodityPicture},
             update_time        = CURRENT_TIMESTAMP
         WHERE commodity_id = #{commodityId}
     </update>
@@ -40,4 +38,10 @@
     <delete id="deleteCommodity">
         DELETE FROM tb_commodity WHERE commodity_id=#{commodityId};
     </delete>
+
+    <update id="uploadPicture">
+        UPDATE tb_commodity
+        SET commodity_picture = #{commodityPicture}
+        WHERE commodity_id = #{commodityId};
+    </update>
 </mapper>

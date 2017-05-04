@@ -33,4 +33,11 @@ public interface CommodityDao {
      * @param commodityId 商品id
      */
     void deleteCommodity(@Param("commodityId") int commodityId);
+
+    /**
+     * 上传商品图片
+     * @param commodityId       商品id
+     * @param commodityPicture  商品图片路径
+     */
+    void uploadPicture(@Param("commodityId")int commodityId,@Param("commodityPicture") String commodityPicture);
 }
