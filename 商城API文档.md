@@ -4,31 +4,56 @@
 
 - ### `GET`   	`/shop/commodities`	展示所有商品的信息
 
-  使用位置：	商城页面商品信息
+  ##### Parameter
 
-##### Responses
+  Name			Description
 
-###### 	Example Value:
+  pageSize			每页显示多少条数据,默认15
+
+  pageNumber		当前页码,若不设置则返回所有页数
+
+  ##### Responses 	
+
+###### 	Example Value:    /shop/commodities?pageSize=4&pageNumber=2
 
 ```
-[
-  {
-    "commodityID": 1,
-    "commodityBrand": 1231,
-    "commodityVariety": 3213,
-    "commodityName": "饺子",
-    "commodityPrice": 100,
-    "commodityPicture": "/home/user/picture/a1b2c3d4_1_1a2b3c4d.jpg"
-  },
-  {
-    "commodityID": 2,
-    "commodityBrand": 3123,
-    "commodityVariety": 432,
-    "commodityName": "鸭脖子",
-    "commodityPrice": 100,
-    "commodityPicture": null
-  }
-]
+{
+  "pageNumber": 2,
+  "dataList": [
+    {
+      "commodityID": 12,
+      "commodityBrand": 3230,
+      "commodityVariety": 4141,
+      "commodityName": "猪蹄",
+      "commodityPrice": 30,
+      "commodityPicture": ""
+    },
+    {
+      "commodityID": 13,
+      "commodityBrand": 3123,
+      "commodityVariety": 432,
+      "commodityName": "鸭脖子",
+      "commodityPrice": 100,
+      "commodityPicture": null
+    },
+    {
+      "commodityID": 14,
+      "commodityBrand": 3123,
+      "commodityVariety": 432,
+      "commodityName": "鸭脖子",
+      "commodityPrice": 100,
+      "commodityPicture": null
+    },
+    {
+      "commodityID": 15,
+      "commodityBrand": 3123,
+      "commodityVariety": 432,
+      "commodityName": "鸭脖子",
+      "commodityPrice": 100,
+      "commodityPicture": null
+    }
+  ]
+}
 ```
 
 - ### `GET`	`/shop/varieties/{varietyId}`	展示指定种类的商品
@@ -39,27 +64,54 @@
 
 ​	Name				Description
 
-​	**varietyId**			**种类id号**
+​	varietyId				种类id号
+
+​	pageSize				每页显示多少条数据,默认15
+
+​	pageNumber			当前页码,若不设置则返回所有页数
 
 ##### Responses
 
-###### 	Example Value:
+###### 	Example Value:/shop/varieties/4141
 
-不存在：				[ ]
+不存在：	
+
+```
+{
+  "pageSize": 15,
+  "pages": []
+}
+```
 
 存在：
 
 ```
-[
-  {
-    "commodityID": 1,
-    "commodityBrand": 1231,
-    "commodityVariety": 3213,
-    "commodityName": "饺子",
-    "commodityPrice": 100,
-    "commodityPicture": null
-  }
-]
+{
+  "pageSize": 15,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "dataList": [
+        {
+          "commodityID": 10,
+          "commodityBrand": 3230,
+          "commodityVariety": 4141,
+          "commodityName": "猪蹄",
+          "commodityPrice": 30,
+          "commodityPicture": ""
+        },
+        {
+          "commodityID": 12,
+          "commodityBrand": 3230,
+          "commodityVariety": 4141,
+          "commodityName": "猪蹄",
+          "commodityPrice": 30,
+          "commodityPicture": ""
+        }
+      ]
+    }
+  ]
+}
 ```
 
 
@@ -72,27 +124,113 @@
 
 ​	Name				Description
 
-​	**brandId**				**品牌id号**
+​	brandId				品牌id号
+
+​	pageSize				每页显示多少条数据,默认15
+
+​	pageNumber			当前页码,若不设置则返回所有页数
 
 ##### Responses
 
-###### 	Example Value:
+###### 	Example Value:	/shop/brands/3123?pageSize=3
 
-不存在：				[ ]
+不存在：	同上
 
 存在：
 
 ```
-[
-  {
-    "commodityID": 10,
-    "commodityBrand": 3230,
-    "commodityVariety": 4141,
-    "commodityName": "猪蹄",
-    "commodityPrice": 30,
-    "commodityPicture": ""
-  }
-]
+{
+  "pageSize": 3,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "dataList": [
+        {
+          "commodityID": 2,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        },
+        {
+          "commodityID": 13,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        },
+        {
+          "commodityID": 14,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "dataList": [
+        {
+          "commodityID": 15,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        },
+        {
+          "commodityID": 16,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        },
+        {
+          "commodityID": 17,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        }
+      ]
+    },
+    {
+      "pageNumber": 3,
+      "dataList": [
+        {
+          "commodityID": 18,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        },
+        {
+          "commodityID": 19,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        },
+        {
+          "commodityID": 20,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        }
+      ]
+    }
+  ]
+}
 ```
 
 - ### `GET`	`/shop/commodities/{commodityId}`	展示指定id号的商品	
@@ -103,11 +241,11 @@
 
 ​	Name				Description
 
-​	**commodityId**		**商品id号**
+​	commodityId			商品id号
 
 ##### Responses
 
-###### 	Example Value:
+###### 	Example Value:	/shop/commodities/10
 
 不存在：				[ ]
 
@@ -141,33 +279,42 @@
 
 ​	表单属性名			Description
 
-​	**searchKey			关键字**
+​	searchKey			关键字
+
+​	pageSize				每页显示多少条数据,默认15
+
+​	pageNumber			当前页码,若不设置则返回所有页数
 
 ##### Responses
 
-###### 	Example Value:	searchKey = "子"
-
-不存在：				[ ]
+###### 	Example Value:	/shop/search?searchKey = "子"
 
 存在：
 
 ```
-[
-  {
-    "commodityID": 1,
-    "commodityBrand": 1231,
-    "commodityVariety": 3213,
-    "commodityName": "饺子",
-    "commodityPrice": 100,
-    "commodityPicture": null
-  },
-  {
-    "commodityID": 2,
-    "commodityBrand": 3123,
-    "commodityVariety": 432,
-    "commodityName": "鸭脖子",
-    "commodityPrice": 100,
-    "commodityPicture": null
-  }
-]
+{
+  "pageSize": 15,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "dataList": [
+        {
+          "commodityID": 1,
+          "commodityBrand": 1231,
+          "commodityVariety": 3213,
+          "commodityName": "饺子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        },
+        {
+          "commodityID": 2,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        }
+    }
+  ]
+} 
 ```

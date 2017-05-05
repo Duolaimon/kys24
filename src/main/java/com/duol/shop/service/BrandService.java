@@ -12,4 +12,8 @@ public interface BrandService {
     List<Brand> getBrandList();
 
     void addBrand(Brand brand);
+
+    void setBrand(Brand brand) throws Exception;
+
+    Brand removeBrand(int brandId) throws Exception;
 }

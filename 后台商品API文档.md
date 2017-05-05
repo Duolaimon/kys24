@@ -5,48 +5,88 @@
 - ### `GET`   	`/back/commodities`	展示所有商品的信息
 
 
+**Parameters**
+
+​	Name				Description
+
+​	pageSize				每页显示多少条数据,默认15
+
+​	pageNumber			当前页码,若不设置则返回所有页数
+
 ##### Responses
 
-###### 	Example Value:
+###### 	Example Value:		/back/commodityies?pageSize=4&pageNumber=2
 
 ```
-[
-  {
-    "commodityId": 1,
-    "commodityName": "饺子",
-    "commodityBrand": 1231,
-    "commodityVariety": 3213,
-    "commodityDepict": "标签",
-    "commodityPrice": 100,
-    "commodityAmount": 500,
-    "commodityLeavenum": 350,
-    "commodityStandard": 15,
-    "operator": 342123,
-    "createTime": 1493486255000,
-    "updateTime": 1493572649000,
-    "commodityPicture": null
-  },
-  {
-    "commodityId": 2,
-    "commodityName": "鸭脖子",
-    "commodityBrand": 3123,
-    "commodityVariety": 432,
-    "commodityDepict": "标签",
-    "commodityPrice": 100,
-    "commodityAmount": 500,
-    "commodityLeavenum": 350,
-    "commodityStandard": 15,
-    "operator": 32,
-    "createTime": 1493481297000,
-    "updateTime": 1493481297000,
-    "commodityPicture": null
-  }
-]
+{
+  "pageNumber": 2,
+  "dataList": [
+    {
+      "commodityId": 12,
+      "commodityName": "猪蹄",
+      "commodityBrand": 3230,
+      "commodityVariety": 4141,
+      "commodityDepict": "标签",
+      "commodityPrice": 30,
+      "commodityAmount": 200,
+      "commodityLeavenum": 80,
+      "commodityStandard": 15,
+      "operator": 13,
+      "createTime": 1493688745000,
+      "updateTime": 1493688741000,
+      "commodityPicture": ""
+    },
+    {
+      "commodityId": 13,
+      "commodityName": "鸭脖子",
+      "commodityBrand": 3123,
+      "commodityVariety": 432,
+      "commodityDepict": "标签",
+      "commodityPrice": 100,
+      "commodityAmount": 500,
+      "commodityLeavenum": 350,
+      "commodityStandard": 15,
+      "operator": 32,
+      "createTime": 1493481297000,
+      "updateTime": 1493481297000,
+      "commodityPicture": null
+    },
+    {
+      "commodityId": 14,
+      "commodityName": "鸭脖子",
+      "commodityBrand": 3123,
+      "commodityVariety": 432,
+      "commodityDepict": "标签",
+      "commodityPrice": 100,
+      "commodityAmount": 500,
+      "commodityLeavenum": 350,
+      "commodityStandard": 15,
+      "operator": 32,
+      "createTime": 1493481297000,
+      "updateTime": 1493481297000,
+      "commodityPicture": null
+    },
+    {
+      "commodityId": 15,
+      "commodityName": "鸭脖子",
+      "commodityBrand": 3123,
+      "commodityVariety": 432,
+      "commodityDepict": "标签",
+      "commodityPrice": 100,
+      "commodityAmount": 500,
+      "commodityLeavenum": 350,
+      "commodityStandard": 15,
+      "operator": 32,
+      "createTime": 1493481297000,
+      "updateTime": 1493481297000,
+      "commodityPicture": null
+    }
+  ]
+}
 ```
 
 - ### `POST`	`/back/commodities`	添加一条商品
 
-  使用位置：	添加商品
 
 ##### Parameter
 

@@ -5,7 +5,6 @@ import com.duol.shop.dto.CommodityMainInfo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Duolaimon
@@ -15,6 +14,8 @@ public interface CommodityService {
     List<Commodity> getCommodityList();
 
     List<CommodityMainInfo> getCommodityInfoList();
+
+
 
     List<CommodityMainInfo> getCommodityInfoListByBrandId(int brandId);
 

@@ -6,6 +6,25 @@
     <select id="queryAllVariety" resultType="Variety">
         SELECT *
         FROM tb_variety
-        ORDER BY variety_id ASC ;
+        ORDER BY variety_id ASC;
     </select>
+
+    <insert id="insertVariety" parameterType="Variety">
+        INSERT tb_variety VALUES (#{varietyId}, #{varietyName}, #{parentId}, #{type},
+                                  current_timestamp, current_timestamp)
+    </insert>
+
+    <update id="updateVariety" parameterType="Variety">
+        UPDATE tb_variety
+        SET variety_name = #{varietyName},
+            parent_id    = #{parentId},
+            type         = #{type},
+            update_time  = current_timestamp
+        WHERE variety_id = #{varietyId};
+    </update>
+
+    <delete id="deleteVariety">
+        DELETE FROM tb_variety
+        WHERE variety_id = #{varietyId};
+    </delete>
 </mapper>

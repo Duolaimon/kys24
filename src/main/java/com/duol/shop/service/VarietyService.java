@@ -10,4 +10,10 @@ import java.util.List;
  */
 public interface VarietyService {
     List<Variety> getAllVarietyList();
+
+    void addVariety(Variety variety);
+
+    void setVariety(Variety variety) throws Exception;
+
+    Variety removeVariety(int varietyId) throws Exception;
 }

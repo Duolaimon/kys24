@@ -8,34 +8,34 @@ import java.util.Date;
  */
 @SuppressWarnings("unused")
 public class Brand {
-    private int brandID;        //品牌编号
-    private int varietyID;      //商品种类编号
-    private String brandname;   //品牌名字
+    private int brandId;        //品牌编号
+    private int varietyId;      //商品种类编号
+    private String brandName;   //品牌名字
     private long createTime;    //创建时间
     private long updateTime;    //更新时间
 
-    public int getBrandID() {
-        return brandID;
+    public int getBrandId() {
+        return brandId;
     }
 
-    public void setBrandID(int brandID) {
-        this.brandID = brandID;
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
     }
 
-    public int getVarietyID() {
-        return varietyID;
+    public int getVarietyId() {
+        return varietyId;
     }
 
-    public void setVarietyID(int varietyID) {
-        this.varietyID = varietyID;
+    public void setVarietyId(int varietyId) {
+        this.varietyId = varietyId;
     }
 
-    public String getBrandname() {
-        return brandname;
+    public String getBrandName() {
+        return brandName;
     }
 
-    public void setBrandname(String brandname) {
-        this.brandname = brandname;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
     public Date getCreateTime() {

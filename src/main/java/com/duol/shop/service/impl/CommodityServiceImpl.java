@@ -66,6 +66,7 @@ public class CommodityServiceImpl implements CommodityService {
                         c.getCommodityVariety(), c.getCommodityName(),
                         c.getCommodityPrice(), c.getCommodityPicture())
         ).collect(Collectors.toList());
+        StateUtils.COMMODITY_IS_UPDATED = false;
     }
 
     /**

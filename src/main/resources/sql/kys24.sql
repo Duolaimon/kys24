@@ -2,7 +2,8 @@
 SQLyog Ultimate v11.33 (64 bit)
 MySQL - 5.5.19 : Database - kys24
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -37,13 +38,13 @@ CREATE TABLE `tb_bank` (
 DROP TABLE IF EXISTS `tb_brand`;
 
 CREATE TABLE `tb_brand` (
-  `brandID` int(11) NOT NULL AUTO_INCREMENT COMMENT '品牌编号',
-  `varietyID` int(11) DEFAULT NULL COMMENT '商品种类编号',
-  `brandname` varchar(8) DEFAULT NULL COMMENT '品牌名字',
+  `brand_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '品牌编号',
+  `variety_id` int(11) DEFAULT NULL COMMENT '商品种类编号',
+  `brand_name` varchar(8) DEFAULT NULL COMMENT '品牌名字',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '注册时间',
   `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
-  PRIMARY KEY (`brandID`),
-  KEY `brandname` (`brandname`)
+  PRIMARY KEY (`brand_id`),
+  KEY `brandName` (`brand_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_brand` */
