@@ -247,7 +247,7 @@ public class CommodityServiceImpl implements CommodityService {
             Optional<Commodity> optional = hasCommodity(commodityId);
             /*判断是否存在目标商品*/
             if (optional.isPresent()) {
-                picturePath = rootLocation + "/" + pictureName;
+                picturePath = "/image/" + pictureName;
                 StateUtils.COMMODITY_IS_UPDATED = true;
                 commodityDao.uploadPicture(commodityId, picturePath);
             } else {

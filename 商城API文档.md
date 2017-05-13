@@ -14,7 +14,7 @@
 
   ##### Responses 	
 
-###### 	Example Value:    /shop/commodities?pageSize=4&pageNumber=2
+  ###### Example Value:    /shop/commodities?pageSize=4&pageNumber=2
 
 ```
 {
@@ -279,7 +279,7 @@
 
 ​	表单属性名			Description
 
-​	searchKey			关键字
+​	searchKey			搜索关键字
 
 ​	pageSize				每页显示多少条数据,默认15
 
@@ -287,12 +287,13 @@
 
 ##### Responses
 
-###### 	Example Value:	/shop/search?searchKey = "子"
+###### 	Example Value:	/shop/search?pageSize=15
 
 存在：
 
 ```
 {
+  "num": 2,
   "pageSize": 15,
   "pages": [
     {
@@ -317,4 +318,15 @@
     }
   ]
 } 
+```
+不存在：
+
+```
+{
+  "num": 0,
+  "pageResult": {
+    "pageSize": 15,
+    "pages": []
+  }
+}
 ```

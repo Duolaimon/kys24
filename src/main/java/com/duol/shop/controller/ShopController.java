@@ -2,6 +2,7 @@ package com.duol.shop.controller;
 
 import com.duol.shop.dto.PageResult;
 import com.duol.shop.dto.Pages;
+import com.duol.shop.dto.SearchResult;
 import com.duol.shop.entity.Brand;
 import com.duol.shop.entity.Commodity;
 import com.duol.shop.dto.CommodityMainInfo;
@@ -177,14 +178,15 @@ public class ShopController {
      */
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public PageResult<CommodityMainInfo> showMainPageBySearch(@RequestParam("searchKey") String searchKey,
-                                                              @RequestParam(defaultValue = "15") int pageSize,
-                                                              @RequestParam(defaultValue = "0") int pageNumber) {
+    public SearchResult showMainPageBySearch(@RequestParam("searchKey") String searchKey,
+                                             @RequestParam(defaultValue = "15") int pageSize,
+                                             @RequestParam(defaultValue = "0") int pageNumber) {
         logger.info("/shop/search?pageSize={}&pageNumber={}[POST]:关键字查找相关商品--{}", searchKey, pageSize, pageNumber);
+        int num = commodityService.getCommodityMainInfoListBySearch(searchKey).size();
         if (pageNumber != 0) {
-            return Pages.getPageHandle(pageSize, commodityService.getCommodityMainInfoListBySearch(searchKey), pageNumber);
+            return new SearchResult(num,Pages.getPageHandle(pageSize, commodityService.getCommodityMainInfoListBySearch(searchKey), pageNumber));
         } else {
-            return Pages.getPageResultHandle(pageSize, commodityService.getCommodityMainInfoListBySearch(searchKey));
+            return new SearchResult(num,Pages.getPageResultHandle(pageSize, commodityService.getCommodityMainInfoListBySearch(searchKey)));
         }
     }
 

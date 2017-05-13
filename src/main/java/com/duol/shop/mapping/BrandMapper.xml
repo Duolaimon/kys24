@@ -9,8 +9,8 @@
     </select>
 
     <insert id="insertBrand" parameterType="Brand">
-        INSERT tb_brand(variety_id, brand_name, create_time, update_time)
-                VALUES (#{varietyId},#{brandName},current_timestamp,current_timestamp);
+        INSERT tb_brand(brand_id,variety_id, brand_name, create_time, update_time)
+                VALUES (#{brandId},#{varietyId},#{brandName},current_timestamp,current_timestamp);
     </insert>
 
     <update id="updateBrand" parameterType="Brand">
