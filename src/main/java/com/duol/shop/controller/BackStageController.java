@@ -61,7 +61,7 @@ public class BackStageController {
     @RequestMapping(value = "/commodities", method = RequestMethod.GET)
     public PageResult<Commodity> showAllProducesInfo(@RequestParam(defaultValue = "15") int pageSize,
                                                @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/back/commodities?pageSize={}:[GET]:返回所有商品",pageSize);
+        logger.info("/back/commodities?pageSize={}:[GET]:(*^__^*) return all the commodities information",pageSize);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, commodityService.getCommodityList(), pageNumber);
         }else {
@@ -77,7 +77,7 @@ public class BackStageController {
      */
     @RequestMapping(value = "/commodities", method = RequestMethod.POST)
     public BackStageResult<Commodity> addCommodity(@RequestBody Commodity commodity) {
-        logger.info("/back/commodities:[POST]:增加商品");
+        logger.info("/back/commodities:[POST]:(*^__^*) add a new commodity");
         try {
             commodityService.addCommodity(commodity);
         } catch (DuplicateKeyException e) {
@@ -100,7 +100,7 @@ public class BackStageController {
      */
     @RequestMapping(value = "/commodities", method = RequestMethod.PUT)
     public BackStageResult<Commodity> setCommodity(@RequestBody Commodity commodity) {
-        logger.info("/back/commodities[PUT]:修改商品");
+        logger.info("/back/commodities[PUT]:(*^__^*) alter commodity ");
         try {
             commodityService.setCommodity(commodity);
         } catch (ResultException e) {
@@ -121,7 +121,7 @@ public class BackStageController {
      */
     @RequestMapping(value = "/commodities/{commodityId}", method = RequestMethod.DELETE)
     public BackStageResult<Commodity> removeCommodity(@PathVariable int commodityId) {
-        logger.info("/back/commodities/{}[DELETE]:删除商品",commodityId);
+        logger.info("/back/commodities/{}[DELETE]:(*^__^*) delete commodity",commodityId);
         Commodity commodity;
         try {
             commodity = commodityService.removeCommodity(commodityId);
@@ -146,7 +146,7 @@ public class BackStageController {
     @PostMapping("/pictures")
     public BackStageResult<String> uploadPicture(@RequestParam("file") MultipartFile file,
                                                  @RequestParam("commodityId") int commodityId) {
-        logger.info("/back/pictures[POST]:上传图片");
+        logger.info("/back/pictures[POST]:(*^__^*) upload picture");
         String picturePath;
         try {
             picturePath = commodityService.storePicture(commodityId, file);
@@ -169,7 +169,7 @@ public class BackStageController {
     @RequestMapping(value = "/brands", method = RequestMethod.GET)
     public PageResult<Brand> getAllBrandInfo(@RequestParam(defaultValue = "15") int pageSize,
                                              @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/back/brands?pageSize={}[GET]:返回所有品牌信息",pageSize);
+        logger.info("/back/brands?pageSize={}[GET]:(*^__^*) return all the brands information",pageSize);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, brandService.getBrandList(), pageNumber);
         }else {
@@ -185,7 +185,7 @@ public class BackStageController {
      */
     @RequestMapping(value = "/brands", method = RequestMethod.POST)
     public BackStageResult<Brand> addBrand(@RequestBody Brand brand) {
-        logger.info("/back/brands[POST]:添加品牌");
+        logger.info("/back/brands[POST]:(*^__^*) add a new brand ");
         try {
             brandService.addBrand(brand);
         } catch (DuplicateKeyException e) {
@@ -208,7 +208,7 @@ public class BackStageController {
      */
     @PutMapping("/brands")
     public BackStageResult<Brand> setBrand(@RequestBody Brand brand) {
-        logger.info("/back/brands[PUT]:修改品牌");
+        logger.info("/back/brands[PUT]:(*^__^*) alter brand");
         try {
             brandService.setBrand(brand);
         } catch (ResultException e) {
@@ -229,7 +229,7 @@ public class BackStageController {
      */
     @DeleteMapping("/brands/{brandId}")
     public BackStageResult<Brand> removeBrand(@PathVariable("brandId") int brandId) {
-        logger.info("/back/brands/{}[DELETE]:删除品牌",brandId);
+        logger.info("/back/brands/{}[DELETE]:(*^__^*) delete brand",brandId);
         Brand brand;
         try {
             brand = brandService.removeBrand(brandId);
@@ -254,7 +254,7 @@ public class BackStageController {
     @RequestMapping(value = "/varieties", method = RequestMethod.GET)
     public PageResult<Variety> getAllVarietyInfo(@RequestParam(defaultValue = "15") int pageSize,
                                                  @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/back/varieties?pageSize={}[GET]:返回所有种类信息",pageSize);
+        logger.info("/back/varieties?pageSize={}[GET]:(*^__^*) return all the varieties information",pageSize);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, varietyService.getAllVarietyList(), pageNumber);
         }else {
@@ -270,7 +270,7 @@ public class BackStageController {
      */
     @RequestMapping(value = "/varieties", method = RequestMethod.POST)
     public BackStageResult<Variety> addVariety(@RequestBody Variety variety) {
-        logger.info("/back/varieties[POST]:添加种类");
+        logger.info("/back/varieties[POST]:(*^__^*) add a new variety");
         try {
             varietyService.addVariety(variety);
         } catch (DuplicateKeyException e) {
@@ -293,7 +293,7 @@ public class BackStageController {
      */
     @PutMapping("/varieties")
     public BackStageResult<Variety> setVariety(@RequestBody Variety variety) {
-        logger.info("/back/varieties[PUT]:修改种类");
+        logger.info("/back/varieties[PUT]:(*^__^*) alter variety");
         try {
             varietyService.setVariety(variety);
         } catch (ResultException e) {
@@ -314,7 +314,7 @@ public class BackStageController {
      */
     @DeleteMapping("/varieties/{varietyId}")
     public BackStageResult<Variety> removeVariety(@PathVariable("varietyId") int varietyId) {
-        logger.info("/back/varieties/{}[DELETE]:删除种类",varietyId);
+        logger.info("/back/varieties/{}[DELETE]:(*^__^*) delete variety",varietyId);
         Variety variety;
         try {
             variety = varietyService.removeVariety(varietyId);

@@ -56,7 +56,7 @@ public class ShopController {
     @RequestMapping(method = RequestMethod.GET)
     public PageResult<Commodity> showAllProducesInfo(@RequestParam(defaultValue = "15") int pageSize,
                                                      @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/shop?pageSize={}&pageNumber={}[GET]:返回所有商品信息",pageSize,pageNumber);
+        logger.info("/shop?pageSize={}&pageNumber={}[GET]:(*^__^*) return all commodity information",pageSize,pageNumber);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, commodityService.getCommodityList(), pageNumber);
         } else {
@@ -72,7 +72,7 @@ public class ShopController {
     @RequestMapping(value = "/brands", method = RequestMethod.GET)
     public PageResult<Brand> getAllBrandInfo(@RequestParam(defaultValue = "15") int pageSize,
                                              @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/shop/brands?pageSize={}&pageNumber={}[GET]:返回所有品牌信息",pageSize,pageNumber);
+        logger.info("/shop/brands?pageSize={}&pageNumber={}[GET]:(*^__^*) return all brand information",pageSize,pageNumber);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, brandService.getBrandList(), pageNumber);
         } else {
@@ -88,7 +88,7 @@ public class ShopController {
     @RequestMapping(value = "/varieties", method = RequestMethod.GET)
     public PageResult<Variety> getAllVarietyInfo(@RequestParam(defaultValue = "15") int pageSize,
                                                  @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/shop/varieties?pageSize={}&pageNumber={}[GET]:返回所有种类信息",pageSize,pageNumber);
+        logger.info("/shop/varieties?pageSize={}&pageNumber={}[GET]:(*^__^*) return all variety information",pageSize,pageNumber);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, varietyService.getAllVarietyList(), pageNumber);
         } else {
@@ -106,7 +106,7 @@ public class ShopController {
     @RequestMapping(value = "/commodities", method = RequestMethod.GET)
     public PageResult<CommodityMainInfo> showMainPageProducesInfo(@RequestParam(defaultValue = "15") int pageSize,
                                                                   @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/shop/commodities?pageSize={}&pageNumber={}[GET]:展示商城页面商品",pageSize,pageNumber);
+        logger.info("/shop/commodities?pageSize={}&pageNumber={}[GET]:(*^__^*) show commodity information within the shop page ",pageSize,pageNumber);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, commodityService.getCommodityInfoList(), pageNumber);
         } else {
@@ -126,7 +126,7 @@ public class ShopController {
     public PageResult<CommodityMainInfo> showMainPageProducesInfoByBrandId(@PathVariable int brandId,
                                                                            @RequestParam(defaultValue = "15") int pageSize,
                                                                            @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/shop/brands/{}?pageSize={}&pageNumber={}[GET]:展示指定品牌号的商品", brandId, pageSize, pageNumber);
+        logger.info("/shop/brands/{}?pageSize={}&pageNumber={}[GET]:(*^__^*) return the commodities information with specified brandId", brandId, pageSize, pageNumber);
         if (pageNumber != 0) {
 
             return Pages.getPageHandle(pageSize,
@@ -147,7 +147,7 @@ public class ShopController {
     public PageResult<CommodityMainInfo> showMainPageProducesInfoByVarietyId(@PathVariable int varietyId,
                                                                              @RequestParam(defaultValue = "15") int pageSize,
                                                                              @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/shop/varieties/{}?pageSize={}&pageNumber={}[GET]:展示指定种类号的商品", varietyId, pageSize, pageNumber);
+        logger.info("/shop/varieties/{}?pageSize={}&pageNumber={}[GET]:(*^__^*) return the commodities information with the specified varietyId", varietyId, pageSize, pageNumber);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, commodityService.getCommodityInfoListByVarietyId(varietyId), pageNumber);
         } else {
@@ -164,7 +164,7 @@ public class ShopController {
      */
     @RequestMapping(value = "/commodities/{commodityId}", method = RequestMethod.GET)
     public Commodity showProducePageByCommodityId(@PathVariable int commodityId) {
-        logger.info("/shop/commodities/{}[GET]:展示指定商品的商品页", commodityId);
+        logger.info("/shop/commodities/{}[GET]:(*^__^*) return commodity with the specified commodityId", commodityId);
         return commodityService.getCommodityInfoById(commodityId);
     }
 
@@ -181,7 +181,7 @@ public class ShopController {
     public SearchResult showMainPageBySearch(@RequestParam("searchKey") String searchKey,
                                              @RequestParam(defaultValue = "15") int pageSize,
                                              @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/shop/search?pageSize={}&pageNumber={}[POST]:关键字查找相关商品--{}", searchKey, pageSize, pageNumber);
+        logger.info("/shop/search?pageSize={}&pageNumber={}[POST]:(*^__^*) search commodity information by the specified [searchKey]", searchKey, pageSize, pageNumber);
         int num = commodityService.getCommodityMainInfoListBySearch(searchKey).size();
         if (pageNumber != 0) {
             return new SearchResult(num,Pages.getPageHandle(pageSize, commodityService.getCommodityMainInfoListBySearch(searchKey), pageNumber));
