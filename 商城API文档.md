@@ -293,7 +293,8 @@
 
 ```
 {
-  "pageSize": 15,
+  "num": 2,
+  "pageSize": 15,
   "pages": [
     {
       "pageNumber": 1,
@@ -318,3 +319,12 @@
   ]
 } 
 ```
+不存在：
+```
+{
+  "num": 0,
+  "pageResult": {
+    "pageSize": 15,
+    "pages": []
+  }
+}
