@@ -287,7 +287,7 @@
 
 ##### Responses
 
-###### 	Example Value:	/shop/search?searchKey = "子"
+###### 	Example Value:	/shop/search?pageSize=15&pageNumber=1
 
 存在：
 
