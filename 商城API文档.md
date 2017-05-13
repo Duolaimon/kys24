@@ -1,5 +1,5 @@
 # 商城API文档
-
+## duolaimon.cn
 
 
 - ### `GET`   	`/shop/commodities`	展示所有商品的信息
@@ -287,14 +287,23 @@
 
 ##### Responses
 
+<<<<<<< HEAD
 ###### 	Example Value:	/shop/search?pageSize=15
+=======
+###### 	Example Value:	/shop/search?pageSize=15&pageNumber=1
+>>>>>>> origin/master
 
 存在：
 
 ```
 {
+<<<<<<< HEAD
   "num": 2,
   "pageSize": 15,
+=======
+  "num": 2,
+  "pageSize": 15,
+>>>>>>> origin/master
   "pages": [
     {
       "pageNumber": 1,
@@ -320,7 +329,10 @@
 } 
 ```
 不存在：
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 ```
 {
   "num": 0,
@@ -329,4 +341,7 @@
     "pages": []
   }
 }
+<<<<<<< HEAD
 ```
+=======
+>>>>>>> origin/master
