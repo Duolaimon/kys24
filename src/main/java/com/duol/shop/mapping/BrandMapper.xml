@@ -4,25 +4,33 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.duol.shop.dao.BrandDao">
     <select id="queryBrandList" resultType="Brand">
-        SELECT * FROM tb_brand
-        ORDER BY brand_id ASC ;
+        SELECT *
+        FROM tb_brand
+        ORDER BY brand_id ASC;
     </select>
 
     <insert id="insertBrand" parameterType="Brand">
-        INSERT tb_brand(brand_id,variety_id, brand_name, create_time, update_time)
-                VALUES (#{brandId},#{varietyId},#{brandName},current_timestamp,current_timestamp);
+        INSERT tb_brand (brand_id, variety_id, brand_name, create_time, update_time)
+        VALUES (#{brandId}, #{varietyId}, #{brandName}, current_timestamp, current_timestamp);
     </insert>
 
     <update id="updateBrand" parameterType="Brand">
         UPDATE tb_brand
         SET
-            variety_id = #{varietyId},
-            brand_name = #{brandName},
+            variety_id  = #{varietyId},
+            brand_name  = #{brandName},
             update_time = current_timestamp()
         WHERE brand_id = #{brandId};
     </update>
 
     <delete id="deleteBrand">
-        DELETE FROM tb_brand WHERE brand_id = #{brandId};
+        DELETE FROM tb_brand
+        WHERE brand_id = #{brandId};
     </delete>
+
+    <update id="uploadPicture">
+        UPDATE tb_brand
+        SET brand_picture = #{brandPicture}
+        WHERE brand_id = #{brandId};
+    </update>
 </mapper>

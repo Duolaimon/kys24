@@ -6,7 +6,6 @@ import com.duol.shop.entity.Variety;
 import com.duol.shop.enums.ResultEnum;
 import com.duol.shop.exception.ResultException;
 import com.duol.shop.service.VarietyService;
-import com.duol.shop.utils.StateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,7 @@ public class VarietyServiceImpl implements VarietyService {
      * 日志
      */
     private static final Logger logger = LoggerFactory.getLogger(ShopController.class);
+    private boolean VARIETY_IS_UPDATED = true;
     /**
      * 所有分类信息
      */
@@ -42,12 +42,12 @@ public class VarietyServiceImpl implements VarietyService {
      */
     private void reGetBrandList() {
         varietyList = varietyDao.queryAllVariety();
-        StateUtils.VARIETY_IS_UPDATED = false;
+        VARIETY_IS_UPDATED = false;
     }
 
     @Override
     public List<Variety> getAllVarietyList() {
-        if (StateUtils.VARIETY_IS_UPDATED) {
+        if (VARIETY_IS_UPDATED) {
             reGetBrandList();
         }
         return varietyList;
@@ -63,7 +63,7 @@ public class VarietyServiceImpl implements VarietyService {
      * @return  包含对象的容器
      */
     private Optional<Variety> hasVariety(int varietyId) {
-        if (StateUtils.VARIETY_IS_UPDATED) {
+        if (VARIETY_IS_UPDATED) {
             reGetBrandList();
         }
         return varietyList.stream()
@@ -78,7 +78,7 @@ public class VarietyServiceImpl implements VarietyService {
     @Override
     public void addVariety(Variety variety) {
         varietyDao.insertVariety(variety);
-        StateUtils.VARIETY_IS_UPDATED = true;
+        VARIETY_IS_UPDATED = true;
     }
 
     /**
@@ -90,7 +90,7 @@ public class VarietyServiceImpl implements VarietyService {
         if (!hasVariety(variety.getVarietyId()).isPresent())
             throw new ResultException(ResultEnum.UPDATE_NOT_EXIST_ID);
         varietyDao.updateVariety(variety);
-        StateUtils.VARIETY_IS_UPDATED = true;
+        VARIETY_IS_UPDATED = true;
     }
 
     /**
@@ -108,7 +108,7 @@ public class VarietyServiceImpl implements VarietyService {
             variety = optional.get();
         }
         varietyDao.deleteVariety(varietyId);
-        StateUtils.VARIETY_IS_UPDATED = true;
+        VARIETY_IS_UPDATED = true;
         return variety;
     }
 }

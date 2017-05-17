@@ -1,6 +1,7 @@
 package com.duol.shop.service;
 
 import com.duol.shop.entity.Brand;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface BrandService {
     void setBrand(Brand brand) throws Exception;
 
     Brand removeBrand(int brandId) throws Exception;
+
+    String storePicture(int brandId, MultipartFile file);
 }

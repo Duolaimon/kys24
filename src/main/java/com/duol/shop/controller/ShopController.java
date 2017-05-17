@@ -56,7 +56,7 @@ public class ShopController {
     @RequestMapping(method = RequestMethod.GET)
     public PageResult<Commodity> showAllProducesInfo(@RequestParam(defaultValue = "15") int pageSize,
                                                      @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/shop?pageSize={}&pageNumber={}[GET]:(*^__^*) return all commodity information",pageSize,pageNumber);
+        logger.info("/shop?pageSize={}&pageNumber={}[GET]:(*^__^*) return all commodity information", pageSize, pageNumber);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, commodityService.getCommodityList(), pageNumber);
         } else {
@@ -72,7 +72,7 @@ public class ShopController {
     @RequestMapping(value = "/brands", method = RequestMethod.GET)
     public PageResult<Brand> getAllBrandInfo(@RequestParam(defaultValue = "15") int pageSize,
                                              @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/shop/brands?pageSize={}&pageNumber={}[GET]:(*^__^*) return all brand information",pageSize,pageNumber);
+        logger.info("/shop/brands?pageSize={}&pageNumber={}[GET]:(*^__^*) return all brand information", pageSize, pageNumber);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, brandService.getBrandList(), pageNumber);
         } else {
@@ -88,7 +88,7 @@ public class ShopController {
     @RequestMapping(value = "/varieties", method = RequestMethod.GET)
     public PageResult<Variety> getAllVarietyInfo(@RequestParam(defaultValue = "15") int pageSize,
                                                  @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/shop/varieties?pageSize={}&pageNumber={}[GET]:(*^__^*) return all variety information",pageSize,pageNumber);
+        logger.info("/shop/varieties?pageSize={}&pageNumber={}[GET]:(*^__^*) return all variety information", pageSize, pageNumber);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, varietyService.getAllVarietyList(), pageNumber);
         } else {
@@ -106,7 +106,7 @@ public class ShopController {
     @RequestMapping(value = "/commodities", method = RequestMethod.GET)
     public PageResult<CommodityMainInfo> showMainPageProducesInfo(@RequestParam(defaultValue = "15") int pageSize,
                                                                   @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/shop/commodities?pageSize={}&pageNumber={}[GET]:(*^__^*) show commodity information within the shop page ",pageSize,pageNumber);
+        logger.info("/shop/commodities?pageSize={}&pageNumber={}[GET]:(*^__^*) show commodity information within the shop page ", pageSize, pageNumber);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, commodityService.getCommodityInfoList(), pageNumber);
         } else {
@@ -178,16 +178,9 @@ public class ShopController {
      */
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public SearchResult showMainPageBySearch(@RequestParam("searchKey") String searchKey,
-                                             @RequestParam(defaultValue = "15") int pageSize,
-                                             @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/shop/search?pageSize={}&pageNumber={}[POST]:(*^__^*) search commodity information by the specified [searchKey]", searchKey, pageSize, pageNumber);
-        int num = commodityService.getCommodityMainInfoListBySearch(searchKey).size();
-        if (pageNumber != 0) {
-            return new SearchResult(num,Pages.getPageHandle(pageSize, commodityService.getCommodityMainInfoListBySearch(searchKey), pageNumber));
-        } else {
-            return new SearchResult(num,Pages.getPageResultHandle(pageSize, commodityService.getCommodityMainInfoListBySearch(searchKey)));
-        }
+    public SearchResult<CommodityMainInfo> showMainPageBySearch(@RequestParam("searchKey") String searchKey) {
+        logger.info("/shop/search ---searchKey={}[POST]:(*^__^*) search commodity information by the specified [searchKey]", searchKey);
+        return new SearchResult<>(commodityService.getCommodityMainInfoListBySearch(searchKey));
     }
 
 }

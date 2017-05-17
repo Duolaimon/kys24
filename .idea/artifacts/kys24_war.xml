@@ -3,7 +3,6 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="kys24-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="kys24:war exploded" />
-      <element id="artifact" artifact-name="kys24:exploded" />
     </root>
   </artifact>
 </component>

@@ -6,7 +6,7 @@
     <select id="queryAllVariety" resultType="Variety">
         SELECT *
         FROM tb_variety
-        ORDER BY variety_id ASC;
+        ORDER BY variety_id DESC ;
     </select>
 
     <insert id="insertVariety" parameterType="Variety">

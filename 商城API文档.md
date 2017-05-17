@@ -18,44 +18,49 @@
 
 ```
 {
-  "pageNumber": 2,
-  "dataList": [
-    {
-      "commodityID": 12,
-      "commodityBrand": 3230,
-      "commodityVariety": 4141,
-      "commodityName": "猪蹄",
-      "commodityPrice": 30,
-      "commodityPicture": ""
-    },
-    {
-      "commodityID": 13,
-      "commodityBrand": 3123,
-      "commodityVariety": 432,
-      "commodityName": "鸭脖子",
-      "commodityPrice": 100,
-      "commodityPicture": null
-    },
-    {
-      "commodityID": 14,
-      "commodityBrand": 3123,
-      "commodityVariety": 432,
-      "commodityName": "鸭脖子",
-      "commodityPrice": 100,
-      "commodityPicture": null
-    },
-    {
-      "commodityID": 15,
-      "commodityBrand": 3123,
-      "commodityVariety": 432,
-      "commodityName": "鸭脖子",
-      "commodityPrice": 100,
-      "commodityPicture": null
-    }
+  "pageSize": 4,
+  "pages": [
+      {
+      "pageNumber": 2,
+      "dataList": [
+        {
+          "commodityID": 12,
+          "commodityBrand": 3230,
+          "commodityVariety": 4141,
+          "commodityName": "猪蹄",
+          "commodityPrice": 30,
+          "commodityPicture": ""
+        },
+        {
+          "commodityID": 13,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        },
+        {
+          "commodityID": 14,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        },
+        {
+          "commodityID": 15,
+          "commodityBrand": 3123,
+          "commodityVariety": 432,
+          "commodityName": "鸭脖子",
+          "commodityPrice": 100,
+          "commodityPicture": null
+        }
+      ]
+     }
   ]
 }
 ```
-
+---
 - ### `GET`	`/shop/varieties/{varietyId}`	展示指定种类的商品
 
   使用位置：	筛选种类商品
@@ -114,7 +119,7 @@
 }
 ```
 
-
+---
 
 - ### `GET`	`/shop/brands/{brandId}`	展示指定品牌的商品
 
@@ -232,7 +237,7 @@
   ]
 }
 ```
-
+---
 - ### `GET`	`/shop/commodities/{commodityId}`	展示指定id号的商品	
 
   使用位置：	商品单页
@@ -269,7 +274,7 @@
 }
 ```
 
-
+---
 
 ### `POST`	`/shop/search`	关键字查找商品
 
@@ -287,23 +292,16 @@
 
 ##### Responses
 
-<<<<<<< HEAD
-###### 	Example Value:	/shop/search?pageSize=15
-=======
-###### 	Example Value:	/shop/search?pageSize=15&pageNumber=1
->>>>>>> origin/master
+
+##### 	Example Value:	/shop/search?pageSize=15&pageNumber=1
+
 
 存在：
 
 ```
 {
-<<<<<<< HEAD
-  "num": 2,
-  "pageSize": 15,
-=======
   "num": 2,
   "pageSize": 15,
->>>>>>> origin/master
   "pages": [
     {
       "pageNumber": 1,
@@ -329,10 +327,7 @@
 } 
 ```
 不存在：
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
 ```
 {
   "num": 0,
@@ -343,5 +338,3 @@
 }
 <<<<<<< HEAD
 ```
-=======
->>>>>>> origin/master

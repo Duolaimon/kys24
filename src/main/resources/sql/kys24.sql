@@ -43,6 +43,7 @@ CREATE TABLE `tb_brand` (
   `brand_name` varchar(8) DEFAULT NULL COMMENT '品牌名字',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '注册时间',
   `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  'brand_picture' VARCHAR(200) NOT NULL DEFAULT '' COMMENT '品牌图片地址',
   PRIMARY KEY (`brand_id`),
   KEY `brandName` (`brand_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

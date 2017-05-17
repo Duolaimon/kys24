@@ -5,12 +5,17 @@ import com.duol.shop.entity.Brand;
 import com.duol.shop.enums.ResultEnum;
 import com.duol.shop.exception.ResultException;
 import com.duol.shop.service.BrandService;
-import com.duol.shop.utils.StateUtils;
+import com.duol.shop.service.StorageProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartException;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +30,12 @@ public class BrandServiceImpl implements BrandService {
      */
     private static final Logger logger = LoggerFactory.getLogger(BrandServiceImpl.class);
     /**
+     * 商品图片保存路径
+     */
+    private final Path rootLocation;
+    private boolean BRAND_IS_UPDATED = true;
+
+    /**
      * 所有品牌的信息
      */
     private List<Brand> brandList;
@@ -34,9 +45,10 @@ public class BrandServiceImpl implements BrandService {
     private BrandDao brandDao;
 
     @Autowired
-    public BrandServiceImpl(BrandDao brandDao) {
+    public BrandServiceImpl(BrandDao brandDao, StorageProperties properties) {
         this.brandDao = brandDao;
         brandList = brandDao.queryBrandList();
+        rootLocation = Paths.get(properties.getLocation());
     }
 
     /**
@@ -44,7 +56,7 @@ public class BrandServiceImpl implements BrandService {
      */
     private void reGetBrandList() {
         brandList = brandDao.queryBrandList();
-        StateUtils.BRAND_IS_UPDATED = false;
+        BRAND_IS_UPDATED = false;
     }
 
     /**
@@ -54,7 +66,7 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public List<Brand> getBrandList() {
 //        logger.info("getBrandList = {}",brandList);
-        if (StateUtils.BRAND_IS_UPDATED)
+        if (BRAND_IS_UPDATED)
             reGetBrandList();
         return brandList;
     }
@@ -69,7 +81,7 @@ public class BrandServiceImpl implements BrandService {
      * @return  包含对象的容器
      */
     private Optional<Brand> hasBrand(int brandId) {
-        if (StateUtils.BRAND_IS_UPDATED) {
+        if (BRAND_IS_UPDATED) {
             reGetBrandList();
         }
         return brandList.stream()
@@ -84,7 +96,7 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public void addBrand(Brand brand) {
         brandDao.insertBrand(brand);
-        StateUtils.BRAND_IS_UPDATED = true;
+        BRAND_IS_UPDATED = true;
     }
 
     /**
@@ -96,7 +108,7 @@ public class BrandServiceImpl implements BrandService {
         if (!hasBrand(brand.getBrandId()).isPresent())
             throw new ResultException(ResultEnum.UPDATE_NOT_EXIST_ID);
         brandDao.updateBrand(brand);
-        StateUtils.BRAND_IS_UPDATED = true;
+        BRAND_IS_UPDATED = true;
     }
 
     /**
@@ -114,7 +126,45 @@ public class BrandServiceImpl implements BrandService {
             brand = optional.get();
         }
         brandDao.deleteBrand(brandId);
-        StateUtils.BRAND_IS_UPDATED = true;
+        BRAND_IS_UPDATED = true;
         return brand;
+    }
+
+    @Override
+    public String storePicture(int brandId, MultipartFile file) {
+        String picturePath;
+        try {
+            if (!Files.isDirectory(rootLocation)) {
+                Files.createDirectory(rootLocation);
+            }
+            logger.info("文件地址 = {}", rootLocation);
+            if (file.isEmpty()) {
+                throw new ResultException(ResultEnum.UPLOAD_EMPTY_FILE);
+            }
+            String fileName = file.getOriginalFilename();
+            String fileType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+            String pictureName = "4d3c2b1aB_" + brandId + fileType;// 保存在本地的图片名字
+            Optional<Brand> optional = hasBrand(brandId);
+            /*判断是否存在目标商品*/
+            if (optional.isPresent()) {
+                picturePath = "/image/" + pictureName;
+                brandDao.uploadPicture(brandId, picturePath);
+                BRAND_IS_UPDATED = true;
+            } else {
+                throw new ResultException(ResultEnum.UPDATE_NOT_EXIST_ID);
+            }
+
+            Files.copy(file.getInputStream(), this.rootLocation.resolve(pictureName));
+        } catch (ResultException e) {
+            logger.info("ResultException:{}", e.getMessage());
+            throw new ResultException(ResultEnum.UPDATE_NOT_EXIST_ID);
+        } catch (MultipartException e) {
+            logger.info("MultipartException:{}", e.getMessage());
+            throw new ResultException(ResultEnum.FILE_TOO_LARGE);
+        } catch (Exception e) {
+            logger.info("Exception:{}", e.getMessage());
+            throw new ResultException(ResultEnum.OTHERS_EXCEPTION);
+        }
+        return picturePath;
     }
 }

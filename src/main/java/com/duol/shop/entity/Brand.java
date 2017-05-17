@@ -13,6 +13,7 @@ public class Brand {
     private String brandName;   //品牌名字
     private long createTime;    //创建时间
     private long updateTime;    //更新时间
+    private String brandPicture;//品牌图片地址
 
     public int getBrandId() {
         return brandId;
@@ -48,6 +49,14 @@ public class Brand {
 
     public Date getUpdateTime() {
         return new Date(updateTime);
+    }
+
+    public String getBrandPicture() {
+        return brandPicture;
+    }
+
+    public void setBrandPicture(String brandPicture) {
+        this.brandPicture = brandPicture;
     }
 
     public void setUpdateTime(Date updateTime) {

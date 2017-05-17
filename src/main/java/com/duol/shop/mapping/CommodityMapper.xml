@@ -3,13 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.duol.shop.dao.CommodityDao">
-    <select id="queryCommodityList" resultType="com.duol.shop.entity.Commodity">
+    <select id="queryCommodityList" resultType="Commodity">
         SELECT *
         FROM tb_commodity
         ORDER BY commodity_id ASC;
     </select>
 
-    <insert id="insertCommodity" parameterType="com.duol.shop.entity.Commodity">
+    <insert id="insertCommodity" parameterType="Commodity">
         INSERT INTO tb_commodity (commodity_id, commodity_name, commodity_brand, commodity_variety,
                                   commodity_depict, commodity_price, commodity_amount,
                                   commodity_leavenum, commodity_standard, operator, create_time,
@@ -19,7 +19,7 @@
                                 #{commodityStandard}, #{operator}, current_timestamp, current_timestamp);
     </insert>
 
-    <update id="updateCommodity" parameterType="com.duol.shop.entity.Commodity">
+    <update id="updateCommodity" parameterType="Commodity">
         UPDATE tb_commodity
         SET
             commodity_name     = #{commodityName},
@@ -36,7 +36,8 @@
     </update>
 
     <delete id="deleteCommodity">
-        DELETE FROM tb_commodity WHERE commodity_id=#{commodityId};
+        DELETE FROM tb_commodity
+        WHERE commodity_id = #{commodityId};
     </delete>
 
     <update id="uploadPicture">

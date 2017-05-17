@@ -60,12 +60,12 @@ public class BackStageController {
      */
     @RequestMapping(value = "/commodities", method = RequestMethod.GET)
     public PageResult<Commodity> showAllProducesInfo(@RequestParam(defaultValue = "15") int pageSize,
-                                               @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/back/commodities?pageSize={}:[GET]:(*^__^*) return all the commodities information",pageSize);
+                                                     @RequestParam(defaultValue = "0") int pageNumber) {
+        logger.info("/back/commodities?pageSize={}:[GET]:(*^__^*) return all the commodities information", pageSize);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, commodityService.getCommodityList(), pageNumber);
-        }else {
-            return Pages.getPageResultHandle(pageSize,commodityService.getCommodityList());
+        } else {
+            return Pages.getPageResultHandle(pageSize, commodityService.getCommodityList());
         }
     }
 
@@ -121,7 +121,7 @@ public class BackStageController {
      */
     @RequestMapping(value = "/commodities/{commodityId}", method = RequestMethod.DELETE)
     public BackStageResult<Commodity> removeCommodity(@PathVariable int commodityId) {
-        logger.info("/back/commodities/{}[DELETE]:(*^__^*) delete commodity",commodityId);
+        logger.info("/back/commodities/{}[DELETE]:(*^__^*) delete commodity", commodityId);
         Commodity commodity;
         try {
             commodity = commodityService.removeCommodity(commodityId);
@@ -144,9 +144,9 @@ public class BackStageController {
      * @return 商品图片上传结果
      */
     @PostMapping("/pictures")
-    public BackStageResult<String> uploadPicture(@RequestParam("file") MultipartFile file,
-                                                 @RequestParam("commodityId") int commodityId) {
-        logger.info("/back/pictures[POST]:(*^__^*) upload picture");
+    public BackStageResult<String> uploadCommodityPicture(@RequestParam("file") MultipartFile file,
+                                                          @RequestParam("commodityId") int commodityId) {
+        logger.info("/back/pictures[POST]:(*^__^*) upload commodity picture");
         String picturePath;
         try {
             picturePath = commodityService.storePicture(commodityId, file);
@@ -169,11 +169,11 @@ public class BackStageController {
     @RequestMapping(value = "/brands", method = RequestMethod.GET)
     public PageResult<Brand> getAllBrandInfo(@RequestParam(defaultValue = "15") int pageSize,
                                              @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/back/brands?pageSize={}[GET]:(*^__^*) return all the brands information",pageSize);
+        logger.info("/back/brands?pageSize={}[GET]:(*^__^*) return all the brands information", pageSize);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, brandService.getBrandList(), pageNumber);
-        }else {
-            return Pages.getPageResultHandle(pageSize,brandService.getBrandList());
+        } else {
+            return Pages.getPageResultHandle(pageSize, brandService.getBrandList());
         }
     }
 
@@ -229,7 +229,7 @@ public class BackStageController {
      */
     @DeleteMapping("/brands/{brandId}")
     public BackStageResult<Brand> removeBrand(@PathVariable("brandId") int brandId) {
-        logger.info("/back/brands/{}[DELETE]:(*^__^*) delete brand",brandId);
+        logger.info("/back/brands/{}[DELETE]:(*^__^*) delete brand", brandId);
         Brand brand;
         try {
             brand = brandService.removeBrand(brandId);
@@ -241,6 +241,19 @@ public class BackStageController {
             return new BackStageResult<>(ResultEnum.OTHERS_EXCEPTION, null);
         }
         return new BackStageResult<>(ResultEnum.SUCCESS, brand);
+    }
+
+    @PostMapping("/pictures/brand")
+    public BackStageResult<String> uploadBrandPicture(@RequestParam("file") MultipartFile file,
+                                                      @RequestParam("brandId") int brandId) {
+        logger.info("/back/pictures/brand[POST]:(*^__^*) upload brand picture");
+        String picturePath;
+        try {
+            picturePath = brandService.storePicture(brandId, file);
+        } catch (ResultException e) {
+            return new BackStageResult<>(e, null);
+        }
+        return new BackStageResult<>(ResultEnum.SUCCESS, picturePath);
     }
     /*
        后台种类处理
@@ -254,11 +267,11 @@ public class BackStageController {
     @RequestMapping(value = "/varieties", method = RequestMethod.GET)
     public PageResult<Variety> getAllVarietyInfo(@RequestParam(defaultValue = "15") int pageSize,
                                                  @RequestParam(defaultValue = "0") int pageNumber) {
-        logger.info("/back/varieties?pageSize={}[GET]:(*^__^*) return all the varieties information",pageSize);
+        logger.info("/back/varieties?pageSize={}[GET]:(*^__^*) return all the varieties information", pageSize);
         if (pageNumber != 0) {
             return Pages.getPageHandle(pageSize, varietyService.getAllVarietyList(), pageNumber);
-        }else {
-            return Pages.getPageResultHandle(pageSize,varietyService.getAllVarietyList());
+        } else {
+            return Pages.getPageResultHandle(pageSize, varietyService.getAllVarietyList());
         }
     }
 
@@ -314,7 +327,7 @@ public class BackStageController {
      */
     @DeleteMapping("/varieties/{varietyId}")
     public BackStageResult<Variety> removeVariety(@PathVariable("varietyId") int varietyId) {
-        logger.info("/back/varieties/{}[DELETE]:(*^__^*) delete variety",varietyId);
+        logger.info("/back/varieties/{}[DELETE]:(*^__^*) delete variety", varietyId);
         Variety variety;
         try {
             variety = varietyService.removeVariety(varietyId);
