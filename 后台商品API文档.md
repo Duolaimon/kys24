@@ -288,7 +288,7 @@
 
 
 
-### `POST`	`/back/pictures`	上传商品图片
+### `POST`	`/back/pictures/{commodityId}`	上传商品图片
 
 ##### Parameter
 

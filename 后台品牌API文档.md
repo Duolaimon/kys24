@@ -204,7 +204,7 @@
 
 
 
-### `POST`	`/back/pictures/brand`	上传品牌图片
+### `POST`	`/back/pictures/brand/{brandId}`	上传品牌图片
 
 ##### Parameter
 
